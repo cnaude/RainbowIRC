@@ -480,7 +480,7 @@ public final class RainbowBot {
             botRealName = config.getString("realname", "");
             ircMaxLineLength = config.getInt("max-line-length", 512);
             if (botRealName.isEmpty()) {
-                botRealName = "PurpleBungeeIRC";
+                botRealName = "RainbowIRC";
 
             }
             botServer = config.getString("server", "");

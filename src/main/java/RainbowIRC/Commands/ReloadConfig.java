@@ -15,7 +15,7 @@ public class ReloadConfig implements IRCCommandInterface {
 
     private final MyPlugin plugin;
     private final String usage = "";
-    private final String desc = "Reload PurpleIRC/config.yml.";
+    private final String desc = "Reload RainbowIRC/config.yml.";
     private final String name = "reloadconfig";    
 
     /**
