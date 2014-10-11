@@ -76,8 +76,6 @@ public class IRCCommandSender implements CommandSender {
     */
     @Override
     public void sendMessageObj(TextObject to) {
-        //plugin.logDebug("[sendMessageObj]1: " + to.getText1());
-        //plugin.logDebug("[sendMessageObj]2: " + to.getText2());
         sendMessage(to.getText1());        
     }
 
