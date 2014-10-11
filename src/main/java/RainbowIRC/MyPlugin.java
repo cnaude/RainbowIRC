@@ -30,7 +30,6 @@ import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.pircbotx.IdentServer;
-import org.pircbotx.ServerInfo;
 import PluginReference.MC_Player;
 import PluginReference.MC_Server;
 import PluginReference.PluginBase;
@@ -39,7 +38,10 @@ import RainbowIRC.Configuration.Configuration;
 import RainbowIRC.Configuration.ConfigurationProvider;
 import RainbowIRC.Configuration.YamlConfiguration;
 import RainbowIRC.Utilities.IRCMessageHandler;
+import static java.lang.StrictMath.log;
 import java.net.InetAddress;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -52,9 +54,11 @@ public class MyPlugin extends PluginBase {
 
     public static MC_Server server = null;
 
-    public String LOG_HEADER;
+    public String LOG_HEADER_INFO;
+    public String LOG_HEADER_ERROR;
+    public String LOG_HEADER_DEBUG;
     public String LOG_HEADER_F;
-    static final Logger log = Logger.getLogger("EventLogger");
+    //static final Logger log = Logger.getLogger("Minecraft");
     private final String sampleFileName;
     private final String MAINCONFIG;
     private File botsFolder;
@@ -137,7 +141,6 @@ public class MyPlugin extends PluginBase {
         this.messageTmpl = new CaseInsensitiveMap<>();
         this.displayNameCache = new CaseInsensitiveMap<>();
         this.hostCache = new HashMap<>();
-        
 
     }
 
@@ -148,7 +151,9 @@ public class MyPlugin extends PluginBase {
     @Override
     public void onStartup(MC_Server argServer) {
         server = argServer;
-        LOG_HEADER = "[" + pluginDescription.getName() + "]";
+        LOG_HEADER_INFO = "[" + pluginDescription.getName() + "/INFO]";
+        LOG_HEADER_ERROR = "[" + pluginDescription.getName() + "/ERROR]";
+        LOG_HEADER_DEBUG = "[" + pluginDescription.getName() + "/DEBUG]";
         LOG_HEADER_F = ChatColor.DARK_PURPLE + "[" + pluginDescription.getName() + "]" + ChatColor.WHITE;
 
         botsFolder = new File(pluginFolder + "/bots");
@@ -393,8 +398,9 @@ public class MyPlugin extends PluginBase {
      *
      * @param message
      */
-    public void logInfo(String message) {        
-        log.log(Level.INFO, String.format("%s %s", LOG_HEADER, message));
+    public void logInfo(String message) {
+        //log.log(Level.INFO, String.format("%s %s", LOG_HEADER, message));
+        System.out.println(String.format("%s %s %s ", getLogPrefix(), LOG_HEADER_INFO, message));
     }
 
     /**
@@ -402,7 +408,8 @@ public class MyPlugin extends PluginBase {
      * @param message
      */
     public void logError(String message) {
-        log.log(Level.SEVERE, String.format("%s %s", LOG_HEADER, message));
+        //log.log(Level.SEVERE, String.format("%s %s", LOG_HEADER, message));
+        System.out.println(String.format("%s %s %s ", getLogPrefix(), LOG_HEADER_ERROR, message));
     }
 
     /**
@@ -411,7 +418,8 @@ public class MyPlugin extends PluginBase {
      */
     public void logDebug(String message) {
         if (debugEnabled) {
-            log.log(Level.INFO, String.format("%s [DEBUG] %s", LOG_HEADER, message));
+            //log.log(Level.INFO, String.format("%s [DEBUG] %s", LOG_HEADER, message));
+            System.out.println(String.format("%s %s %s ", getLogPrefix(), LOG_HEADER_DEBUG, message));
         }
     }
 
@@ -759,13 +767,18 @@ public class MyPlugin extends PluginBase {
         info.eventSortOrder = -1000.0D;
         return info;
     }
-    
+
     public void broadcastMessage(String message, String perm) {
         for (MC_Player player : getServer().getPlayers()) {
             if (player.hasPermission(perm)) {
                 player.sendMessage(message);
             }
         }
+    }
+
+    public static String getLogPrefix() {
+       Calendar cal = Calendar.getInstance();
+       return String.format("[%02d:%02d:%02d]", cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), cal.get(Calendar.SECOND));
     }
 
 }
