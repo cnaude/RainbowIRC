@@ -128,8 +128,7 @@ public class MyPlugin extends PluginBase {
     public MyPlugin() {
         this.pluginDescription = new Description(
                 "IRC bridge for the Rainbow Minecraft server.",
-                "RainbowIRC",
-                "0.1",
+                "RainbowIRC",                
                 "http://www.cnaude.org/RainbowIRC");
         this.pluginFolder = new File("plugins_mod" + File.separator + pluginDescription.getName() + File.separator);
         this.cacheFile = new File(this.pluginFolder, "displayName.cache");
@@ -150,11 +149,12 @@ public class MyPlugin extends PluginBase {
      */
     @Override
     public void onStartup(MC_Server argServer) {
-        server = argServer;
+        server = argServer;        
         LOG_HEADER_INFO = "[" + pluginDescription.getName() + "/INFO]";
         LOG_HEADER_ERROR = "[" + pluginDescription.getName() + "/ERROR]";
         LOG_HEADER_DEBUG = "[" + pluginDescription.getName() + "/DEBUG]";
         LOG_HEADER_F = ChatColor.DARK_PURPLE + "[" + pluginDescription.getName() + "]" + ChatColor.WHITE;
+        logInfo("Starting " + getDescription().getName() + " version " + getDescription().getVersion());
 
         botsFolder = new File(pluginFolder + "/bots");
         configFile = new File(pluginFolder, "config.yml");

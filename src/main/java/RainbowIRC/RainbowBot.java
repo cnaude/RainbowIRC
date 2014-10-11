@@ -543,7 +543,7 @@ public final class RainbowBot {
                 plugin.logInfo(" No command-notify ignores defined.");
             }
 
-            plugin.logInfo("Channels: " + config.getKeys().toString());
+            plugin.logInfo("Channels: " + config.getSection("channels").getKeys());
 
             for (String enChannelName : config.getSection("channels").getKeys()) {
                 String channelName = decodeChannel(enChannelName);
