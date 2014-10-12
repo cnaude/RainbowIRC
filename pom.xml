@@ -4,7 +4,10 @@
     <groupId>com.cnaude.rainbowirc</groupId>
     <artifactId>RainbowIRC</artifactId>
     <version>1.0-${build.number}</version>
+    <description>A Rainbow plugin for bridging game chat with IRC. Connect to any number of IRC servers and channels simultaneously.</description>
+    <url>http://www.project-rainbow.org/site/index.php?topic=552.0</url>
     <packaging>jar</packaging>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
@@ -12,6 +15,7 @@
         <rainbow.version>34</rainbow.version>
         <build.number>SNAPSHOT</build.number>
     </properties>
+    
     <repositories>
         <repository>
             <id>bungeecord-repo</id>
@@ -81,14 +85,14 @@
                 <directory>src/main/resources</directory>
                 <filtering>true</filtering>
                 <includes>
-                    <include>**/version.txt</include>
+                    <include>**/plugin.properties</include>
                 </includes>
             </resource>
             <resource>
                 <directory>src/main/resources</directory>
                 <filtering>false</filtering>
                 <excludes>
-                    <exclude>**/version.txt</exclude>
+                    <exclude>**/plugin.properties</exclude>
                 </excludes>
             </resource>
         </resources>

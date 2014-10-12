@@ -1,8 +1,10 @@
 package RainbowIRC;
 
+import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Scanner;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -10,40 +12,41 @@ import java.util.Scanner;
  */
 public class Description {
 
-    private final String description, name, url, version;
+    Properties prop;
+    private final String VERSION_KEY = "version";
+    private final String NAME_KEY = "name";
+    private final String URL_KEY = "url";
+    private final String DESCRIPTION_KEY = "description";
 
-    public Description(String description, String name, String url) {
-        this.description = description;
-        this.name = name;
-        this.url = url;
-        this.version = getVersionFromTxt("version.txt");
+    public Description() {
+        prop = new Properties();  
+        loadPropFile("plugin.properties");
     }
 
     public String getDescription() {
-        return description;
+        return prop.getProperty(DESCRIPTION_KEY);
     }
 
     public String getName() {
-        return name;
+        return prop.getProperty(NAME_KEY);
     }
 
     public String getVersion() {
-        return version;
+        return prop.getProperty(VERSION_KEY);
     }
 
     public String getURL() {
-        return url;
+        return prop.getProperty(URL_KEY);
     }
 
-    private String getVersionFromTxt(String fileName) {
+    private void loadPropFile(String fileName) {
         InputStream inputStream = MyPlugin.class.getResourceAsStream("/" + fileName);
-
-        String result;
-        try (Scanner scanner = new Scanner(inputStream, StandardCharsets.UTF_8.name())) {
-            result = scanner.next();
+        
+        try {
+            prop.load(inputStream);
+        } catch (IOException ex) {
+            Logger.getLogger(Description.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return result;
     }
 
 }

@@ -126,10 +126,7 @@ public class MyPlugin extends PluginBase {
     private final File pluginFolder;
 
     public MyPlugin() {
-        this.pluginDescription = new Description(
-                "IRC bridge for the Rainbow Minecraft server.",
-                "RainbowIRC",                
-                "http://www.cnaude.org/RainbowIRC");
+        this.pluginDescription = new Description();
         this.pluginFolder = new File("plugins_mod" + File.separator + pluginDescription.getName() + File.separator);
         this.cacheFile = new File(this.pluginFolder, "displayName.cache");
         this.sortedCommands = new ArrayList<>();
