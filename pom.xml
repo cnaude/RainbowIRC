@@ -6,6 +6,7 @@
     <version>1.0-${build.number}</version>
     <description>A Rainbow plugin for bridging game chat with IRC. Connect to any number of IRC servers and channels simultaneously.</description>
     <url>http://www.project-rainbow.org/site/index.php?topic=552.0</url>
+    
     <packaging>jar</packaging>
     
     <properties>
@@ -14,6 +15,7 @@
         <maven.compiler.target>1.7</maven.compiler.target>
         <rainbow.version>34</rainbow.version>
         <build.number>SNAPSHOT</build.number>
+        <author>Chris Naude</author>
     </properties>
     
     <repositories>

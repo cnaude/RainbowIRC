@@ -12,11 +12,12 @@ import java.util.logging.Logger;
  */
 public class Description {
 
-    Properties prop;
+    private final Properties prop;
     private final String VERSION_KEY = "version";
     private final String NAME_KEY = "name";
     private final String URL_KEY = "url";
     private final String DESCRIPTION_KEY = "description";
+    private final String AUTHOR_KEY = "author";
 
     public Description() {
         prop = new Properties();  
@@ -37,6 +38,10 @@ public class Description {
 
     public String getURL() {
         return prop.getProperty(URL_KEY);
+    }
+    
+    public String getAuthor() {
+        return prop.getProperty(AUTHOR_KEY);
     }
 
     private void loadPropFile(String fileName) {
