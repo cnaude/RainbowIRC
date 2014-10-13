@@ -317,7 +317,7 @@ public class MyPlugin extends PluginBase {
                 if (file.getName().endsWith(".yml")) {
                     logInfo("Loading bot file: " + file.getName());
                     RainbowBot pircBot = new RainbowBot(file, this);
-                    ircBots.put(pircBot.botNick, pircBot);
+                    ircBots.put(file.getName(), pircBot);
                     logInfo("Loaded bot: " + pircBot.botNick);
                 }
             }
