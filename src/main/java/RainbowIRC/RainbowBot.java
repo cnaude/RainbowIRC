@@ -762,6 +762,7 @@ public final class RainbowBot {
         }
         for (String channelName : botChannels) {
             if (!isPlayerInValidWorld(player, channelName)) {
+                plugin.logDebug("Player " + player.getName() + " is not a valid world: " + player.getWorld().getName());
                 continue;
             }
             if (isMessageEnabled(channelName, TemplateName.GAME_CHAT)) {
