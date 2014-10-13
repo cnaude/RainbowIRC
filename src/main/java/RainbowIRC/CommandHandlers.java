@@ -43,10 +43,8 @@ import RainbowIRC.Commands.IRCCommandInterface;
 import RainbowIRC.Commands.Login;
 import RainbowIRC.Commands.UnMute;
 import RainbowIRC.Commands.Say;
-import PluginReference.ChatColor;
 import PluginReference.MC_Command;
 import PluginReference.MC_Player;
-import PluginReference.RainbowUtils;
 import com.google.common.base.Joiner;
 import java.text.Collator;
 import java.util.ArrayList;
@@ -128,7 +126,7 @@ public class CommandHandlers implements MC_Command {
 
     @Override
     public String getHelpLine(MC_Player plr) {
-        return ChatColor.AQUA + "/head" + ChatColor.YELLOW + " PlayerName " + ChatColor.WHITE + " - " + RainbowUtils.RainbowString("Get a player head!");
+        return "/irc help";
     }
 
     @Override
@@ -161,7 +159,7 @@ public class CommandHandlers implements MC_Command {
         if (plr == null) {
             return true;
         }
-        return plr.hasPermission("head.create");
+        return plr.hasPermission("irc");
     }
 
 }
