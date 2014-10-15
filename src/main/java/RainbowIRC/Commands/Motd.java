@@ -30,7 +30,7 @@ public class Motd implements IRCCommandInterface {
      */
     @Override
     public void dispatch(MC_Player sender, String[] args) {
-        java.util.List<RainbowBot> myBots = new ArrayList<RainbowBot>();
+        java.util.List<RainbowBot> myBots = new ArrayList<>();
         if (args.length >= 2) {
             if (plugin.ircBots.containsKey(args[1])) {
                 myBots.add(plugin.ircBots.get(args[1]));

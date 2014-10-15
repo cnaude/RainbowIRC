@@ -204,7 +204,14 @@ channels:
         modes: '*'
         private: false
         ctcp: false
-        game_command: version        
+        game_command: '@version'        
+        private_listen: true
+        channel_listen: true
+      motd:
+        modes: '*'
+        private: false
+        ctcp: false
+        game_command: '@motd'        
         private_listen: true
         channel_listen: true
       lag:
@@ -221,10 +228,10 @@ channels:
         game_command: lagmem        
         private_listen: true
         channel_listen: true
-      gamemode:
-        modes: 'o'
-        private: false
-        ctcp: false
-        game_command: 'gamemode %ARGS%'
-        private_listen: true
-        channel_listen: true
+      #gamemode:
+      #  modes: 'o'
+      #  private: false
+      #  ctcp: false
+      #  game_command: 'gamemode %ARGS%'
+      #  private_listen: true
+      #  channel_listen: true

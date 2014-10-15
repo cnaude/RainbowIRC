@@ -103,9 +103,9 @@ public class IRCMessageHandler {
                         case "@ochat":
                             ircBot.broadcastChat(user, channel, target, commandArgs, true, ctcpResponse);
                             break;
-                        //case "@motd":
-                        //    sendMessage(ircBot, target, plugin.getServerMotd(), ctcpResponse);
-                        //    break;
+                        case "@motd":
+                            sendMessage(ircBot, target, "MOTD: " + plugin.getServer().getServerMOTD(), ctcpResponse);
+                            break;
                         case "@msg":
                             ircBot.playerChat(user, channel, target, commandArgs);
                             break;
@@ -115,6 +115,9 @@ public class IRCMessageHandler {
                             break;
                         case "@query":
                             sendMessage(ircBot, target, plugin.getRemotePlayers(commandArgs), ctcpResponse);
+                            break;
+                        case "@version":
+                            sendMessage(ircBot, target, "Rainbow Mod Version: " + Double.toString(plugin.getServer().getRainbowVersion()), ctcpResponse);
                             break;
                         default:
                             if (commandArgs == null) {
