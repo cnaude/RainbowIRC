@@ -146,7 +146,7 @@ public class MyPlugin extends PluginBase {
      */
     @Override
     public void onStartup(MC_Server argServer) {
-        server = argServer;        
+        server = argServer;
         LOG_HEADER_INFO = "[" + pluginDescription.getName() + "/INFO]";
         LOG_HEADER_ERROR = "[" + pluginDescription.getName() + "/ERROR]";
         LOG_HEADER_DEBUG = "[" + pluginDescription.getName() + "/DEBUG]";
@@ -710,6 +710,27 @@ public class MyPlugin extends PluginBase {
 
     /**
      *
+     * @param cmd
+     * @param ei
+     */
+    @Override
+    public void onConsoleInput(String cmd, MC_EventInfo ei) {
+        if (cmd.startsWith("say ")) {
+            String msg = cmd.split(" ", 2)[1];
+            for (RainbowBot ircBot : ircBots.values()) {
+                ircBot.consoleChat(msg);
+            }
+        } else if (cmd.startsWith("broadcast ")) {
+            String msg = cmd.split(" ", 2)[1];
+            for (RainbowBot ircBot : ircBots.values()) {
+                ircBot.consoleBroadcast(msg);
+            }
+        }
+        processCommand(null, cmd);
+    }
+
+    /**
+     *
      * @param plr
      * @param msg
      * @param ei
@@ -728,23 +749,7 @@ public class MyPlugin extends PluginBase {
                     }
                 }
             }
-
-            for (RainbowBot ircBot : ircBots.values()) {
-                if (msg.startsWith("/")) {
-                    String cmd;
-                    String params = "";
-                    if (msg.contains(" ")) {
-                        cmd = msg.split(" ", 2)[0];
-                        params = msg.split(" ", 2)[1];
-                    } else {
-                        cmd = msg;
-                    }
-                    cmd = cmd.substring(0);
-                    if (ircBot.channelCmdNotifyEnabled && !ircBot.channelCmdNotifyIgnore.contains(cmd)) {
-                        ircBot.commandNotify(plr, cmd, params);
-                    }
-                }
-            }
+            processCommand(plr, msg);
         } else {
             if (plr.hasPermission("irc.message.gamechat")) {
                 logDebug("Player " + plr.getName() + " has permission irc.message.gamechat");
@@ -753,6 +758,27 @@ public class MyPlugin extends PluginBase {
                 }
             } else {
                 logDebug("Player " + plr.getName() + " does not have irc.message.gamechat permission.");
+            }
+        }
+    }
+
+    private void processCommand(MC_Player player, String msg) {
+        for (RainbowBot ircBot : ircBots.values()) {
+            String cmd;
+            String params = "";
+            if (msg.contains(" ")) {
+                cmd = msg.split(" ", 2)[0];
+                params = msg.split(" ", 2)[1];
+            } else {
+                cmd = msg;
+            }
+            cmd = cmd.substring(0);
+            if (ircBot.channelCmdNotifyEnabled && !ircBot.channelCmdNotifyIgnore.contains(cmd)) {
+                if (player != null) {
+                    ircBot.commandNotify(player, cmd, params);
+                } else {
+                    ircBot.commandNotify("CONSOLE", cmd, params);
+                }
             }
         }
     }
@@ -774,8 +800,8 @@ public class MyPlugin extends PluginBase {
     }
 
     public static String getLogPrefix() {
-       Calendar cal = Calendar.getInstance();
-       return String.format("[%02d:%02d:%02d]", cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), cal.get(Calendar.SECOND));
+        Calendar cal = Calendar.getInstance();
+        return String.format("[%02d:%02d:%02d]", cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), cal.get(Calendar.SECOND));
     }
 
 }

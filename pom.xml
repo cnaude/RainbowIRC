@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
-        <rainbow.version>34</rainbow.version>
+        <rainbow.version>40</rainbow.version>
         <build.number>SNAPSHOT</build.number>
         <author>Chris Naude</author>
     </properties>
@@ -57,7 +57,7 @@
         <dependency>
             <groupId>com.cnaude.rainbow</groupId>
             <artifactId>PluginReference</artifactId>
-            <version>0.1</version>
+            <version>${rainbow.version}</version>
         </dependency>     
         
         <dependency> 

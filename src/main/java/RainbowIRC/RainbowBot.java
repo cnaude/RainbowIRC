@@ -1942,6 +1942,30 @@ public final class RainbowBot {
     }
 
     /**
+     * Notify when players use commands
+     *
+     * @param player
+     * @param cmd
+     * @param params
+     */
+    public void commandNotify(String player, String cmd, String params) {
+        if (!this.isConnected()) {
+            return;
+        }
+        String msg = plugin.tokenizer.gameCommandToIRCTokenizer(player,
+                plugin.getMsgTemplate(botNick, TemplateName.GAME_COMMAND), cmd, params);
+        if (channelCmdNotifyMode.equalsIgnoreCase("msg")) {
+            for (String recipient : channelCmdNotifyRecipients) {
+                asyncIRCMessage(recipient, msg);
+            }
+        } else if (channelCmdNotifyMode.equalsIgnoreCase("ctcp")) {
+            for (String recipient : channelCmdNotifyRecipients) {
+                asyncCTCPMessage(recipient, msg);
+            }
+        }
+    }
+
+    /**
      *
      * @param sender
      * @param nick

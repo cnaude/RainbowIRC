@@ -373,6 +373,20 @@ public class ChatTokenizer {
                 .replace("%COMMAND%", cmd)
                 .replace("%PARAMS%", params));
     }
+    
+    /**
+     *
+     * @param player
+     * @param template
+     * @param cmd
+     * @param params
+     * @return
+     */
+    public String gameCommandToIRCTokenizer(String player, String template, String cmd, String params) {
+        return plugin.colorConverter.gameColorsToIrc(playerTokenizer(player, template)
+                .replace("%COMMAND%", cmd)
+                .replace("%PARAMS%", params));
+    }
 
     public String targetChatResponseTokenizer(String target, String message, String template) {
         return plugin.colorConverter.gameColorsToIrc(template

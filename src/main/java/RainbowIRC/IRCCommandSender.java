@@ -5,8 +5,8 @@ import joebkt.CommandSender;
 import joebkt.EntityGeneric;
 import joebkt.IntegerCoordinates;
 import joebkt.TextObject;
+import joebkt.Vec3D;
 import joebkt.World;
-import joebkt.bru;
 import joebkt.di;
 
 /**
@@ -94,11 +94,6 @@ public class IRCCommandSender implements CommandSender {
     }
 
     @Override
-    public bru d() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public World getWorld() {
         //return World(plugin.getServer().getWorld(0));
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -118,5 +113,10 @@ public class IRCCommandSender implements CommandSender {
     @Override
     public void a(CommandResultTypeMaybe crtm, int i) throws di {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Vec3D d() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
