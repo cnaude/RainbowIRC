@@ -42,21 +42,21 @@ public class MessageDelay implements IRCCommandInterface  {
                     long delay = Long.parseLong(args[2]);
                     plugin.ircBots.get(bot).setIRCDelay(sender, delay);
                 } else {
-                    sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));
+                    plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
                 }
             } else {
-                sender.sendMessage(fullUsage);
+                plugin.sendMessage(sender, fullUsage);
             }
         } else if (args.length == 2) {
             String bot = args[1];
             if (plugin.ircBots.containsKey(bot)) {
-                sender.sendMessage(ChatColor.WHITE + "IRC message delay is currently "
+                plugin.sendMessage(sender, ChatColor.WHITE + "IRC message delay is currently "
                         + plugin.ircBots.get(bot).getMessageDelay() + " ms.");
             } else {
-                sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         } else {
-            sender.sendMessage(fullUsage);
+            plugin.sendMessage(sender, fullUsage);
         }
     }
 

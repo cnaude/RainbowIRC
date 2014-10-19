@@ -29,9 +29,9 @@ public class Reload implements IRCCommandInterface {
      */
     @Override
     public void dispatch(MC_Player sender, String[] args) {
-        sender.sendMessage("Disabling RainbowIRC...");
+        plugin.sendMessage(sender, "Disabling RainbowIRC...");
         plugin.onShutdown();
-        sender.sendMessage("Enabling RainbowIRC...");
+        plugin.sendMessage(sender, "Enabling RainbowIRC...");
         plugin.onStartup(plugin.getServer());
     }
 

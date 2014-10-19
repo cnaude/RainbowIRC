@@ -56,7 +56,7 @@ public class SendRaw implements IRCCommandInterface {
                 ircBot.asyncRawlineNow(msg.substring(1));                  
             }
         } else {
-            sender.sendMessage(fullUsage);
+            plugin.sendMessage(sender, fullUsage);
         }
     }
 

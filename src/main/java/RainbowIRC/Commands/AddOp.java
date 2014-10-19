@@ -52,14 +52,13 @@ public class AddOp implements IRCCommandInterface {
                     plugin.ircBots.get(bot).addOp(channelName, mask, sender);
                     plugin.ircBots.get(bot).opIrcUsers(channelName);
                 } else {
-                    sender.sendMessage(ChatColor.RED + "Invalid user or mask: " 
-                            + ChatColor.WHITE + mask);
+                    plugin.sendMessage(sender, ChatColor.RED + "Invalid user or mask: "  + ChatColor.WHITE + mask);
                 }
             } else {
-                sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         } else {
-            sender.sendMessage(fullUsage);
+            plugin.sendMessage(sender, fullUsage);
         }
     }
 

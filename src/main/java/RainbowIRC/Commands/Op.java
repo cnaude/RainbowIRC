@@ -42,16 +42,16 @@ public class Op implements IRCCommandInterface {
                 for (int i = 3; i < args.length; i++) {
                     // #channel, user
                     plugin.ircBots.get(bot).op(channelName, args[i]);
-                    sender.sendMessage("Giving operator status to " 
+                    plugin.sendMessage(sender, "Giving operator status to " 
                             + ChatColor.WHITE + args[i] 
                             + ChatColor.RESET + " on " 
                             + ChatColor.WHITE + channelName);
                 }
             } else {
-                sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         } else {
-            sender.sendMessage(fullUsage);
+            plugin.sendMessage(sender, fullUsage);
         }
     }
 

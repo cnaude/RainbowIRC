@@ -20,10 +20,10 @@ public class BotsAndChannels {
             if (plugin.ircBots.get(botName).isValidChannel(channelName)) {           
                 channel.add(channelName);
             } else {
-                sender.sendMessage(plugin.invalidChannelName.replace("%CHANNEL%", channelName));
+                plugin.sendMessage(sender, plugin.invalidChannelName.replace("%CHANNEL%", channelName));
             }
         } else {
-            sender.sendMessage(plugin.invalidBotName.replace("%BOT%", botName));
+            plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", botName));
         }
     }
 

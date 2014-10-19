@@ -46,7 +46,7 @@ public class UnMute implements IRCCommandInterface {
             bac = new BotsAndChannels(plugin, sender);
             idx = 1;
         } else {
-            sender.sendMessage(fullUsage);
+            plugin.sendMessage(sender, fullUsage);
             return;
         }
         if (bac.bot.size() > 0 && bac.channel.size() > 0) {

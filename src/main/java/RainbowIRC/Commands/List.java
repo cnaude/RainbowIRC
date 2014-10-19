@@ -49,7 +49,7 @@ public class List implements IRCCommandInterface {
                     ircBot.sendUserList(sender);
                 }
             } else {
-                sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         }
     }

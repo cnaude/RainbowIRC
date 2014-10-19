@@ -42,10 +42,10 @@ public class RemoveOp implements IRCCommandInterface {
                 // #channel, user
                 plugin.ircBots.get(bot).removeOp(channel, args[3], sender);
             } else {
-                sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         } else {
-            sender.sendMessage(fullUsage);
+            plugin.sendMessage(sender, fullUsage);
         }
     }
 

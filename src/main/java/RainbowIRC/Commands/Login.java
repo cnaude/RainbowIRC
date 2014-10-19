@@ -41,10 +41,10 @@ public class Login implements IRCCommandInterface {
             if (plugin.ircBots.containsKey(bot)) {
                 plugin.ircBots.get(bot).changeLogin(sender, login);
             } else {
-                sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         } else {
-            sender.sendMessage(fullUsage);
+            plugin.sendMessage(sender, fullUsage);
         }
     }
 

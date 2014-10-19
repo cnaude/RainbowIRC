@@ -36,19 +36,19 @@ public class ListVoices implements IRCCommandInterface {
             String channelName = args[2];
             if (plugin.ircBots.containsKey(bot)) {
                 if (plugin.ircBots.get(bot).voicesList.containsKey(channelName)) {
-                    sender.sendMessage(ChatColor.DARK_PURPLE + "-----[  " + ChatColor.WHITE + channelName
+                    plugin.sendMessage(sender, ChatColor.DARK_PURPLE + "-----[  " + ChatColor.WHITE + channelName
                             + ChatColor.DARK_PURPLE + " - " + ChatColor.WHITE + "Auto Voice Masks" + ChatColor.DARK_PURPLE + " ]-----");
                     for (String userMask : plugin.ircBots.get(bot).voicesList.get(channelName)) {
-                        sender.sendMessage(" - " + userMask);
+                        plugin.sendMessage(sender, " - " + userMask);
                     }
                 } else {
-                    sender.sendMessage(plugin.invalidChannel.replace("%CHANNEL%", channelName));
+                    plugin.sendMessage(sender, plugin.invalidChannel.replace("%CHANNEL%", channelName));
                 }
             } else {
-                sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         } else {
-            sender.sendMessage(fullUsage);
+            plugin.sendMessage(sender, fullUsage);
         }
     }
 

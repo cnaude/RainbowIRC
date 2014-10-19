@@ -45,10 +45,10 @@ public class Server implements IRCCommandInterface {
                     plugin.ircBots.get(bot).setServer(sender, server, Boolean.parseBoolean(args[3]));
                 }
             } else {
-                sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         } else {
-            sender.sendMessage(fullUsage);
+            plugin.sendMessage(sender, fullUsage);
         }
     }
 

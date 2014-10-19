@@ -45,10 +45,10 @@ public class Disconnect implements IRCCommandInterface {
             if (plugin.ircBots.containsKey(bot)) {
                 plugin.ircBots.get(bot).asyncQuit(sender);
             } else {
-                sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         } else {
-            sender.sendMessage(fullUsage);
+            plugin.sendMessage(sender, fullUsage);
         }
     }
 

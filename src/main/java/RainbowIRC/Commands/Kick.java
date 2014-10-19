@@ -42,13 +42,13 @@ public class Kick implements IRCCommandInterface {
                 for (int i = 3; i < args.length; i++) {
                     // #channel, user
                     plugin.ircBots.get(bot).kick(channelName, args[3]);
-                    sender.sendMessage(ChatColor.WHITE + "Kicking " + args[i] + " from " + channelName + "...");
+                    plugin.sendMessage(sender, ChatColor.WHITE + "Kicking " + args[i] + " from " + channelName + "...");
                 }
             } else {
-                sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         } else {
-            sender.sendMessage(fullUsage);
+            plugin.sendMessage(sender, fullUsage);
         }
     }
 

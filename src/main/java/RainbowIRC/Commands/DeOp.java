@@ -46,7 +46,7 @@ public class DeOp implements IRCCommandInterface {
             bac = new BotsAndChannels(plugin, sender);
             idx = 1;
         } else {
-            sender.sendMessage(fullUsage);
+            plugin.sendMessage(sender, fullUsage);
             return;
         }
         if (bac.bot.size() > 0 && bac.channel.size() > 0) {
@@ -54,7 +54,7 @@ public class DeOp implements IRCCommandInterface {
                 for (String channelName : bac.channel) {
                     for (int i = idx; i < args.length; i++) {
                         plugin.ircBots.get(botName).deOp(channelName, args[i]);
-                        sender.sendMessage("Removing operator status from "
+                        plugin.sendMessage(sender, "Removing operator status from "
                                 + ChatColor.WHITE + args[i]
                                 + ChatColor.RESET + " in "
                                 + ChatColor.WHITE + channelName);

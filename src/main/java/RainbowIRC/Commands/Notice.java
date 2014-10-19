@@ -52,7 +52,7 @@ public class Notice implements IRCCommandInterface {
             }
 
             if (msgIdx == 3 && args.length <= 3) {
-                sender.sendMessage(fullUsage);
+                plugin.sendMessage(sender, fullUsage);
                 return;
             }
 
@@ -62,10 +62,10 @@ public class Notice implements IRCCommandInterface {
                     msg = msg + " " + args[i];
                 }
                 ircBot.asyncNotice(target, msg.substring(1));
-                sender.sendMessage("Sent notice message \"" + msg.substring(1) + "\" to \"" + target + "\"");
+                plugin.sendMessage(sender, "Sent notice message \"" + msg.substring(1) + "\" to \"" + target + "\"");
             }
         } else {
-            sender.sendMessage(fullUsage);
+            plugin.sendMessage(sender, fullUsage);
         }
     }
 

@@ -45,6 +45,8 @@ import RainbowIRC.Commands.UnMute;
 import RainbowIRC.Commands.Say;
 import PluginReference.MC_Command;
 import PluginReference.MC_Player;
+import RainbowIRC.Commands.Load;
+import RainbowIRC.Commands.Unload;
 import com.google.common.base.Joiner;
 import java.text.Collator;
 import java.util.ArrayList;
@@ -79,6 +81,7 @@ public class CommandHandlers implements MC_Command {
         commands.put("listbots", new ListBots(plugin));
         commands.put("listops", new ListOps(plugin));
         commands.put("listvoices", new ListVoices(plugin));
+        commands.put("load", new Load(plugin));
         commands.put("login", new Login(plugin));
         commands.put("messagedelay", new MessageDelay(plugin));
         commands.put("msg", new Msg(plugin));
@@ -102,6 +105,7 @@ public class CommandHandlers implements MC_Command {
         commands.put("sendraw", new SendRaw(plugin));
         commands.put("server", new Server(plugin));
         commands.put("topic", new Topic(plugin));
+        commands.put("unload", new Unload(plugin));
         commands.put("unmute", new UnMute(plugin));
         commands.put("voice", new Voice(plugin));
         commands.put("whois", new Whois(plugin));
@@ -135,11 +139,7 @@ public class CommandHandlers implements MC_Command {
     }
 
     @Override
-    public void handleCommand(MC_Player plr, String[] args) {
-        if (plr == null) {
-            plugin.logInfo("Sorry only players can issue irc commands.");
-            return;
-        }
+    public void handleCommand(MC_Player plr, String[] args) {        
         plugin.logDebug("ARGS: " + Joiner.on(" ").join(args));
         if (args.length >= 1) {
             String subCmd = args[0].toLowerCase();

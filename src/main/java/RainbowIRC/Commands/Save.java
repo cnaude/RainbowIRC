@@ -45,10 +45,10 @@ public class Save implements IRCCommandInterface {
             if (plugin.ircBots.containsKey(bot)) {
                 plugin.ircBots.get(bot).saveConfig(sender);
             } else {
-                sender.sendMessage(plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         } else {
-            sender.sendMessage(fullUsage);
+            plugin.sendMessage(sender, fullUsage);
         }
     }
 

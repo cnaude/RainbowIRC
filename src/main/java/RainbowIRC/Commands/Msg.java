@@ -48,7 +48,7 @@ public class Msg implements IRCCommandInterface {
             }
 
             if (msgIdx == 3 && args.length <= 3) {
-                sender.sendMessage(fullUsage);
+                plugin.sendMessage(sender, fullUsage);
                 return;
             }
 
@@ -64,12 +64,12 @@ public class Msg implements IRCCommandInterface {
                     ircBot.consoleMsgPlayer(nick, msg.substring(1));
                 }                
                 if (!template.isEmpty()) {
-                    sender.sendMessage(plugin.tokenizer.msgChatResponseTokenizer(nick, msg.substring(1), template));
+                    plugin.sendMessage(sender, plugin.tokenizer.msgChatResponseTokenizer(nick, msg.substring(1), template));
                 }
             }
         }
         else {
-            sender.sendMessage(fullUsage);
+            plugin.sendMessage(sender, fullUsage);
     }
 }
 

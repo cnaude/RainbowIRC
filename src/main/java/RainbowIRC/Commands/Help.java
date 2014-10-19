@@ -33,22 +33,22 @@ public class Help implements IRCCommandInterface {
         if (args.length >= 2) {
             String s = args[1];
             if (plugin.commandHandlers.commands.containsKey(s)) {
-                sender.sendMessage(helpStringBuilder(
+                plugin.sendMessage(sender, helpStringBuilder(
                         plugin.commandHandlers.commands.get(s).name(),
                         plugin.commandHandlers.commands.get(s).desc(),
                         plugin.commandHandlers.commands.get(s).usage()));
                 return;
             } else {
-                sender.sendMessage(ChatColor.RED + "Invalid sub command: " 
+                plugin.sendMessage(sender, ChatColor.RED + "Invalid sub command: " 
                         + ChatColor.WHITE + s);
                 return;
             }
         }
-        sender.sendMessage(plugin.colorConverter.translateAlternateColorCodes('&',
+        plugin.sendMessage(sender, plugin.colorConverter.translateAlternateColorCodes('&',
                 "&5-----[  &"+plugin.getDescription().getName()+"&5 - &f" + plugin.getDescription().getVersion() + "&5 ]-----"));
         for (String s : plugin.commandHandlers.sortedCommands) {
             if (plugin.commandHandlers.commands.containsKey(s)) {
-                sender.sendMessage(helpStringBuilder(
+                plugin.sendMessage(sender, helpStringBuilder(
                         plugin.commandHandlers.commands.get(s).name(),
                         plugin.commandHandlers.commands.get(s).desc(),
                         plugin.commandHandlers.commands.get(s).usage()));

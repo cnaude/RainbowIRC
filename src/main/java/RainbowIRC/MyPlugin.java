@@ -38,10 +38,8 @@ import RainbowIRC.Configuration.Configuration;
 import RainbowIRC.Configuration.ConfigurationProvider;
 import RainbowIRC.Configuration.YamlConfiguration;
 import RainbowIRC.Utilities.IRCMessageHandler;
-import static java.lang.StrictMath.log;
 import java.net.InetAddress;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -61,7 +59,7 @@ public class MyPlugin extends PluginBase {
     //static final Logger log = Logger.getLogger("Minecraft");
     private final String sampleFileName;
     private final String MAINCONFIG;
-    private File botsFolder;
+    public File botsFolder;
     private File configFile;
     public static long startTime;
     public boolean identServerEnabled;
@@ -364,9 +362,9 @@ public class MyPlugin extends PluginBase {
      * @param sender
      */
     public void reloadMainConfig(MC_Player sender) {
-        sender.sendMessage(LOG_HEADER_F + " Reloading config.yml ...");
+        sendMessage(sender, LOG_HEADER_F + " Reloading config.yml ...");
         loadConfig();
-        sender.sendMessage(LOG_HEADER_F + ChatColor.WHITE + " Done.");
+        sendMessage(sender, LOG_HEADER_F + ChatColor.WHITE + " Done.");
     }
 
     private void createConfig() {
@@ -802,6 +800,22 @@ public class MyPlugin extends PluginBase {
     public static String getLogPrefix() {
         Calendar cal = Calendar.getInstance();
         return String.format("[%02d:%02d:%02d]", cal.get(Calendar.HOUR), cal.get(Calendar.MINUTE), cal.get(Calendar.SECOND));
+    }
+    
+     public String botify(String bot) {
+        if (bot.toLowerCase().endsWith("yml")) {
+            return bot;
+        } else {
+            return bot + ".yml";
+        }
+    }
+     
+    public void sendMessage(MC_Player sender, String message) {
+        if (sender == null) {
+            logInfo(message);
+        } else {
+            sendMessage(sender, message);
+        }
     }
 
 }

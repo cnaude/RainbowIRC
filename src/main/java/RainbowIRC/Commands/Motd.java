@@ -36,7 +36,7 @@ public class Motd implements IRCCommandInterface {
                 myBots.add(plugin.ircBots.get(args[1]));
                 
             } else {
-                sender.sendMessage(plugin.invalidBotName.replace("%BOT%", args[1]));
+                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", args[1]));
             }
         } else {
             myBots.addAll(plugin.ircBots.values());
@@ -45,9 +45,9 @@ public class Motd implements IRCCommandInterface {
         for (RainbowBot ircBot : myBots) {
             String motd = ircBot.getMotd();
             if (motd != null) {
-                sender.sendMessage(motd);
+                plugin.sendMessage(sender, motd);
             } else {
-                sender.sendMessage("No MOTD found.");
+                plugin.sendMessage(sender, "No MOTD found.");
             }
         }
     }

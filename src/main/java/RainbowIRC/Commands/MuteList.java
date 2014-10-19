@@ -43,7 +43,7 @@ public class MuteList implements IRCCommandInterface {
         } else if (args.length == 1) {
             bac = new BotsAndChannels(plugin, sender);
         } else {
-            sender.sendMessage(fullUsage);
+            plugin.sendMessage(sender, fullUsage);
             return;
         }
         if (bac.bot.size() > 0 && bac.channel.size() > 0) {
