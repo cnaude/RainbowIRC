@@ -45,10 +45,10 @@ public class Say implements IRCCommandInterface {
                 }
                 plugin.ircBots.get(bot).asyncIRCMessage(channelName, msg.substring(1));
             } else {
-                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessageToSender(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         } else {
-            plugin.sendMessage(sender, fullUsage);
+            plugin.sendMessageToSender(sender, fullUsage);
         }
     }
 

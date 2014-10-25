@@ -89,11 +89,8 @@ public class MyPlugin extends PluginBase {
             + ChatColor.RED + ". Type '" + ChatColor.WHITE + "/irc listbots"
             + ChatColor.RED + "' to see valid bots.";
 
-    public final String invalidChannelName = ChatColor.RED + "Invalid channel name: "
-            + ChatColor.WHITE + "%CHANNEL%";
-
-    public final String invalidChannel = ChatColor.RED + "Invalid channel: "
-            + ChatColor.WHITE + "%CHANNEL%";
+    public final String invalidChannelName = ChatColor.RED + "Invalid channel name: " + ChatColor.WHITE + "%CHANNEL%";
+    public final String invalidChannel = ChatColor.RED + "Invalid channel: " + ChatColor.WHITE + "%CHANNEL%";
     public final String noPermission = ChatColor.RED + "You do not have permission to use this command.";
 
     private boolean debugEnabled;
@@ -362,9 +359,9 @@ public class MyPlugin extends PluginBase {
      * @param sender
      */
     public void reloadMainConfig(MC_Player sender) {
-        sendMessage(sender, LOG_HEADER_F + " Reloading config.yml ...");
+        sendMessageToSender(sender, LOG_HEADER_F + " Reloading config.yml ...");
         loadConfig();
-        sendMessage(sender, LOG_HEADER_F + ChatColor.WHITE + " Done.");
+        sendMessageToSender(sender, LOG_HEADER_F + ChatColor.WHITE + " Done.");
     }
 
     private void createConfig() {
@@ -810,11 +807,11 @@ public class MyPlugin extends PluginBase {
         }
     }
      
-    public void sendMessage(MC_Player sender, String message) {
+    public void sendMessageToSender(MC_Player sender, String message) {
         if (sender == null) {
-            logInfo(message);
+            logInfo(colorConverter.stripColor(message));
         } else {
-            sendMessage(sender, message);
+            sender.sendMessage(message);
         }
     }
 

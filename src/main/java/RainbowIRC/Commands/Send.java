@@ -72,7 +72,7 @@ public class Send implements IRCCommandInterface {
 
             }
         } else {
-            plugin.sendMessage(sender, fullUsage);
+            plugin.sendMessageToSender(sender, fullUsage);
         }
     }
 

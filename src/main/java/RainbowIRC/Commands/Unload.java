@@ -51,22 +51,22 @@ public class Unload implements IRCCommandInterface {
         if (args.length >= 2) {
             String bot = plugin.botify(args[1]);
             if (plugin.ircBots.containsKey(bot)) {
-                plugin.sendMessage(sender, ChatColor.WHITE + "Unloading " + bot + "...");
+                plugin.sendMessageToSender(sender, ChatColor.WHITE + "Unloading " + bot + "...");
                 plugin.ircBots.get(bot).quit();
                 plugin.ircBots.get(bot).saveConfig(sender);
                 plugin.ircBots.remove(bot);
                 if (args.length >= 3) {
                     if (args[2].equalsIgnoreCase("disable")) {
-                        plugin.sendMessage(sender, ChatColor.WHITE + "Renaming " + bot + " to " + bot + ".disabled");
+                        plugin.sendMessageToSender(sender, ChatColor.WHITE + "Renaming " + bot + " to " + bot + ".disabled");
                         File file = new File(plugin.botsFolder, bot);
                         file.renameTo(new File(plugin.botsFolder, bot + ".disabled"));
                     }
                 }
             } else {
-                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessageToSender(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         } else {
-            plugin.sendMessage(sender, fullUsage);
+            plugin.sendMessageToSender(sender, fullUsage);
         }
     }
 

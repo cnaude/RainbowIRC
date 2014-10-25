@@ -41,7 +41,7 @@ public class Nick implements IRCCommandInterface {
             String nick = args[2];
             if (plugin.ircBots.containsKey(bot)) {
                 if (plugin.ircBots.containsKey(nick)) {
-                    plugin.sendMessage(sender, ChatColor.RED 
+                    plugin.sendMessageToSender(sender, ChatColor.RED 
                             + "There is already a bot with that nick!");
                 } else {
                     plugin.ircBots.get(bot).asyncChangeNick(sender, nick);
@@ -50,10 +50,10 @@ public class Nick implements IRCCommandInterface {
                     ircBot.botNick = nick;
                 }
             } else {
-                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessageToSender(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         } else {
-            plugin.sendMessage(sender, fullUsage);
+            plugin.sendMessageToSender(sender, fullUsage);
         }
     }
 

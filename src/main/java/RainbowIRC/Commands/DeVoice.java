@@ -42,7 +42,7 @@ public class DeVoice implements IRCCommandInterface {
             bac = new BotsAndChannels(plugin, sender);
             idx = 1;
         } else {
-            plugin.sendMessage(sender, fullUsage);
+            plugin.sendMessageToSender(sender, fullUsage);
             return;
         }
         if (bac.bot.size() > 0 && bac.channel.size() > 0) {
@@ -50,7 +50,7 @@ public class DeVoice implements IRCCommandInterface {
                 for (String channelName : bac.channel) {
                     for (int i = idx; i < args.length; i++) {
                         plugin.ircBots.get(botName).deVoice(channelName, args[i]);
-                        plugin.sendMessage(sender, "Removing voice status from "
+                        plugin.sendMessageToSender(sender, "Removing voice status from "
                                 + ChatColor.WHITE + args[i]
                                 + ChatColor.RESET + " in "
                                 + ChatColor.WHITE + channelName);

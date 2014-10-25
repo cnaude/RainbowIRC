@@ -264,7 +264,7 @@ public final class RainbowBot {
     }
 
     public void reload(MC_Player sender) {
-        plugin.sendMessage(sender, "Reloading bot: " + botNick);
+        plugin.sendMessageToSender(sender, "Reloading bot: " + botNick);
         reload();
     }
 
@@ -278,7 +278,7 @@ public final class RainbowBot {
      */
     public void reloadConfig(MC_Player sender) {
         loadConfig();
-        plugin.sendMessage(sender, plugin.LOG_HEADER_F + " [" + botNick + "] IRC bot configuration reloaded.");
+        plugin.sendMessageToSender(sender, plugin.LOG_HEADER_F + " [" + botNick + "] IRC bot configuration reloaded.");
     }
 
     /**
@@ -289,9 +289,9 @@ public final class RainbowBot {
      */
     public void mute(String channelName, MC_Player sender, String user) {
         if (muteList.get(channelName).contains(user)) {
-            plugin.sendMessage(sender, "User '" + user + "' is already muted.");
+            plugin.sendMessageToSender(sender, "User '" + user + "' is already muted.");
         } else {
-            plugin.sendMessage(sender, "User '" + user + "' is now muted.");
+            plugin.sendMessageToSender(sender, "User '" + user + "' is now muted.");
             muteList.get(channelName).add(user);
         }
     }
@@ -303,9 +303,9 @@ public final class RainbowBot {
      */
     public void muteList(String channelName, MC_Player sender) {
         if (muteList.get(channelName).isEmpty()) {
-            plugin.sendMessage(sender, "There are no users muted for " + channelName);
+            plugin.sendMessageToSender(sender, "There are no users muted for " + channelName);
         } else {
-            plugin.sendMessage(sender, "Muted users for " + channelName
+            plugin.sendMessageToSender(sender, "Muted users for " + channelName
                     + ": " + Joiner.on(", ").join(muteList.get(channelName)));
         }
     }
@@ -318,16 +318,16 @@ public final class RainbowBot {
      */
     public void unMute(String channelName, MC_Player sender, String user) {
         if (muteList.get(channelName).contains(user)) {
-            plugin.sendMessage(sender, "User '" + user + "' is no longer muted.");
+            plugin.sendMessageToSender(sender, "User '" + user + "' is no longer muted.");
             muteList.get(channelName).remove(user);
 
         } else {
-            plugin.sendMessage(sender, "User '" + user + "' is not muted.");
+            plugin.sendMessageToSender(sender, "User '" + user + "' is not muted.");
         }
     }
 
     public void asyncConnect(MC_Player sender) {
-        plugin.sendMessage(sender, connectMessage);
+        plugin.sendMessageToSender(sender, connectMessage);
         asyncConnect();
     }
 
@@ -449,7 +449,7 @@ public final class RainbowBot {
      * @param newLogin
      */
     public void changeLogin(MC_Player sender, String newLogin) {
-        plugin.sendMessage(sender, ChatColor.DARK_PURPLE
+        plugin.sendMessageToSender(sender, ChatColor.DARK_PURPLE
                 + "Login set to " + ChatColor.WHITE
                 + newLogin + ChatColor.DARK_PURPLE
                 + ". Reload the bot for the change to take effect.");
@@ -735,7 +735,7 @@ public final class RainbowBot {
      */
     public void setIRCDelay(MC_Player sender, long delay) {
         config.set("message-delay", delay);
-        plugin.sendMessage(sender, ChatColor.DARK_PURPLE
+        plugin.sendMessageToSender(sender, ChatColor.DARK_PURPLE
                 + "IRC message delay changed to "
                 + ChatColor.WHITE + delay + ChatColor.DARK_PURPLE + " ms. "
                 + "Reload for the change to take effect.");
@@ -1034,9 +1034,9 @@ public final class RainbowBot {
             setTheTopic(channel, tTopic);
             config.set("channels." + encodeChannel(getConfigChannelName(channelName)) + ".topic", topic);
             channelTopic.put(channelName, topic);
-            plugin.sendMessage(sender, "IRC topic for " + channelName + " changed to \"" + topic + "\"");
+            plugin.sendMessageToSender(sender, "IRC topic for " + channelName + " changed to \"" + topic + "\"");
         } else {
-            plugin.sendMessage(sender, "Invalid channel: " + channelName);
+            plugin.sendMessageToSender(sender, "Invalid channel: " + channelName);
         }
     }
 
@@ -1088,7 +1088,7 @@ public final class RainbowBot {
         config.set("port", botServerPort);
         config.set("autoconnect", autoConnect);
 
-        plugin.sendMessage(sender, "IRC server changed to \"" + botServer + ":"
+        plugin.sendMessageToSender(sender, "IRC server changed to \"" + botServer + ":"
                 + botServerPort + "\". (AutoConnect: "
                 + autoConnect + ")");
     }
@@ -1101,10 +1101,10 @@ public final class RainbowBot {
      */
     public void addOp(String channelName, String userMask, MC_Player sender) {
         if (opsList.get(channelName).contains(userMask)) {
-            plugin.sendMessage(sender, "User mask " + ChatColor.WHITE + userMask
+            plugin.sendMessageToSender(sender, "User mask " + ChatColor.WHITE + userMask
                     + ChatColor.RESET + " is already in the ops list.");
         } else {
-            plugin.sendMessage(sender, "User mask " + ChatColor.WHITE + userMask
+            plugin.sendMessageToSender(sender, "User mask " + ChatColor.WHITE + userMask
                     + ChatColor.RESET + " has been added to the ops list.");
             opsList.get(channelName).add(userMask);
         }
@@ -1119,10 +1119,10 @@ public final class RainbowBot {
      */
     public void addVoice(String channelName, String userMask, MC_Player sender) {
         if (voicesList.get(channelName).contains(userMask)) {
-            plugin.sendMessage(sender, "User mask " + ChatColor.WHITE + userMask
+            plugin.sendMessageToSender(sender, "User mask " + ChatColor.WHITE + userMask
                     + ChatColor.RESET + " is already in the voices list.");
         } else {
-            plugin.sendMessage(sender, "User mask " + ChatColor.WHITE + userMask
+            plugin.sendMessageToSender(sender, "User mask " + ChatColor.WHITE + userMask
                     + ChatColor.RESET + " has been added to the voices list.");
             voicesList.get(channelName).add(userMask);
         }
@@ -1137,11 +1137,11 @@ public final class RainbowBot {
      */
     public void removeOp(String channelName, String userMask, MC_Player sender) {
         if (opsList.get(channelName).contains(userMask)) {
-            plugin.sendMessage(sender, "User mask " + ChatColor.WHITE + userMask
+            plugin.sendMessageToSender(sender, "User mask " + ChatColor.WHITE + userMask
                     + ChatColor.RESET + " has been removed to the ops list.");
             opsList.get(channelName).remove(userMask);
         } else {
-            plugin.sendMessage(sender, "User mask " + ChatColor.WHITE + userMask
+            plugin.sendMessageToSender(sender, "User mask " + ChatColor.WHITE + userMask
                     + ChatColor.RESET + " is not in the ops list.");
         }
         config.set("channels." + encodeChannel(getConfigChannelName(channelName)) + ".ops", opsList.get(channelName));
@@ -1155,11 +1155,11 @@ public final class RainbowBot {
      */
     public void removeVoice(String channelName, String userMask, MC_Player sender) {
         if (voicesList.get(channelName).contains(userMask)) {
-            plugin.sendMessage(sender, "User mask " + ChatColor.WHITE + userMask
+            plugin.sendMessageToSender(sender, "User mask " + ChatColor.WHITE + userMask
                     + ChatColor.RESET + " has been removed to the voices list.");
             voicesList.get(channelName).remove(userMask);
         } else {
-            plugin.sendMessage(sender, "User mask " + ChatColor.WHITE + userMask
+            plugin.sendMessageToSender(sender, "User mask " + ChatColor.WHITE + userMask
                     + ChatColor.RESET + " is not in the voices list.");
         }
         config.set("channels." + encodeChannel(getConfigChannelName(channelName)) + ".voices", voicesList.get(channelName));
@@ -1319,7 +1319,7 @@ public final class RainbowBot {
      * @param sender
      */
     public void asyncQuit(MC_Player sender) {
-        plugin.sendMessage(sender, "Disconnecting " + bot.getNick() + " from IRC server " + botServer);
+        plugin.sendMessageToSender(sender, "Disconnecting " + bot.getNick() + " from IRC server " + botServer);
         asyncQuit(false);
     }
 
@@ -1358,7 +1358,7 @@ public final class RainbowBot {
     public void sendTopic(MC_Player sender) {
         for (String channelName : botChannels) {
             if (commandMap.containsKey(channelName)) {
-                plugin.sendMessage(sender, ChatColor.WHITE + "[" + ChatColor.DARK_PURPLE
+                plugin.sendMessageToSender(sender, ChatColor.WHITE + "[" + ChatColor.DARK_PURPLE
                         + botNick + ChatColor.WHITE + "]" + ChatColor.RESET
                         + " IRC topic for " + ChatColor.WHITE + channelName
                         + ChatColor.RESET + ": \""
@@ -1385,7 +1385,7 @@ public final class RainbowBot {
         }
 
         if (user == null) {
-            plugin.sendMessage(sender, ChatColor.RED + "Invalid user: " + ChatColor.WHITE + nick);
+            plugin.sendMessageToSender(sender, ChatColor.RED + "Invalid user: " + ChatColor.WHITE + nick);
         } else {
             bot.sendRaw().rawLineNow(String.format("WHOIS %s %s", nick, nick));
             whoisSenders.add(sender);
@@ -1401,14 +1401,14 @@ public final class RainbowBot {
         String invalidChannel = ChatColor.RED + "Invalid channel: "
                 + ChatColor.WHITE + channelName;
         if (!isValidChannel(channelName)) {
-            plugin.sendMessage(sender, invalidChannel);
+            plugin.sendMessageToSender(sender, invalidChannel);
             return;
         }
         Channel channel = getChannel(channelName);
         if (channel != null) {
             sendUserList(sender, channel);
         } else {
-            plugin.sendMessage(sender, invalidChannel);
+            plugin.sendMessageToSender(sender, invalidChannel);
         }
     }
 
@@ -1420,14 +1420,14 @@ public final class RainbowBot {
     public void sendUserList(MC_Player sender, Channel channel) {
         String channelName = channel.getName();
         if (!isValidChannel(channelName)) {
-            plugin.sendMessage(sender, ChatColor.RED + "Invalid channel: "
+            plugin.sendMessageToSender(sender, ChatColor.RED + "Invalid channel: "
                     + ChatColor.WHITE + channelName);
             return;
         }
-        plugin.sendMessage(sender, ChatColor.DARK_PURPLE + "-----[  " + ChatColor.WHITE + channelName
+        plugin.sendMessageToSender(sender, ChatColor.DARK_PURPLE + "-----[  " + ChatColor.WHITE + channelName
                 + ChatColor.DARK_PURPLE + " - " + ChatColor.WHITE + bot.getNick() + ChatColor.DARK_PURPLE + " ]-----");
         if (!this.isConnected()) {
-            plugin.sendMessage(sender, ChatColor.RED + " Not connected!");
+            plugin.sendMessageToSender(sender, ChatColor.RED + " Not connected!");
             return;
         }
         List<String> channelUsers = new ArrayList<>();
@@ -1444,7 +1444,7 @@ public final class RainbowBot {
         }
         Collections.sort(channelUsers, Collator.getInstance());
         for (String userName : channelUsers) {
-            plugin.sendMessage(sender, "  " + ChatColor.WHITE + userName);
+            plugin.sendMessageToSender(sender, "  " + ChatColor.WHITE + userName);
         }
     }
 
@@ -2048,7 +2048,7 @@ public final class RainbowBot {
                 bot.sendIRC().changeNick(newNick);
             }
         }).start();
-        plugin.sendMessage(sender, "Setting nickname to " + newNick);
+        plugin.sendMessageToSender(sender, "Setting nickname to " + newNick);
         config.set("nick", newNick);
         saveConfig();
     }
@@ -2060,10 +2060,10 @@ public final class RainbowBot {
     public void saveConfig(MC_Player sender) {
         try {
             ConfigurationProvider.getProvider(YamlConfiguration.class).save(config, file);
-            plugin.sendMessage(sender, plugin.LOG_HEADER_F + " Saving bot \"" + botNick + "\" to " + file.getName());
+            plugin.sendMessageToSender(sender, plugin.LOG_HEADER_F + " Saving bot \"" + botNick + "\" to " + file.getName());
         } catch (IOException ex) {
             plugin.logError(ex.getMessage());
-            plugin.sendMessage(sender, ex.getMessage());
+            plugin.sendMessageToSender(sender, ex.getMessage());
         }
     }
     

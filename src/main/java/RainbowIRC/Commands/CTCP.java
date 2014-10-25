@@ -52,7 +52,7 @@ public class CTCP implements IRCCommandInterface {
             }
 
             if (msgIdx == 3 && args.length <= 3) {
-                plugin.sendMessage(sender, fullUsage);
+                plugin.sendMessageToSender(sender, fullUsage);
                 return;
             }
 
@@ -62,10 +62,10 @@ public class CTCP implements IRCCommandInterface {
                     msg = msg + " " + args[i];
                 }
                 ircBot.asyncCTCPCommand(target, msg.substring(1));
-                plugin.sendMessage(sender, "Sent CTCP command \"" + msg.substring(1) + "\" to \"" + target + "\"");
+                plugin.sendMessageToSender(sender, "Sent CTCP command \"" + msg.substring(1) + "\" to \"" + target + "\"");
             }
         } else {
-            plugin.sendMessage(sender, fullUsage);
+            plugin.sendMessageToSender(sender, fullUsage);
         }
     }
 

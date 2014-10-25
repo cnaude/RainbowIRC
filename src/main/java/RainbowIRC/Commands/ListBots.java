@@ -36,17 +36,16 @@ public class ListBots implements IRCCommandInterface {
      */
     @Override
     public void dispatch(MC_Player sender, String[] args) {
-        plugin.sendMessage(sender, ChatColor.DARK_PURPLE + "-----[  " + ChatColor.WHITE + "IRC Bots"
-                + ChatColor.DARK_PURPLE + "   ]-----");
+        plugin.sendMessageToSender(sender, ChatColor.DARK_PURPLE + "-----[  " + ChatColor.WHITE + "IRC Bots" + ChatColor.DARK_PURPLE + "   ]-----");
         for (RainbowBot ircBot : plugin.ircBots.values()) {
-            plugin.sendMessage(sender, ChatColor.DARK_PURPLE + "* " + ChatColor.WHITE + ircBot.botNick
-            + ChatColor.DARK_PURPLE + " [" + ChatColor.GRAY + ircBot.getFileName() + ChatColor.DARK_PURPLE + "]");
+            plugin.sendMessageToSender(sender, ChatColor.DARK_PURPLE + "* " + ChatColor.WHITE + ircBot.botNick
+                    + ChatColor.DARK_PURPLE + " [" + ChatColor.GRAY + ircBot.getFileName() + ChatColor.DARK_PURPLE + "]");
             if (ircBot.isConnected()) {
                 for (Channel channel : ircBot.getChannels()) {
-                    plugin.sendMessage(sender, ChatColor.DARK_PURPLE + "  - " + ChatColor.WHITE + channel.getName());
+                    plugin.sendMessageToSender(sender, ChatColor.DARK_PURPLE + "  - " + ChatColor.WHITE + channel.getName());
                 }
             } else {
-                plugin.sendMessage(sender, ChatColor.RED + "Not connected.");
+                plugin.sendMessageToSender(sender, ChatColor.RED + "Not connected.");
             }
         }
     }

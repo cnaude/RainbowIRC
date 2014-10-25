@@ -40,19 +40,19 @@ public class ListOps implements IRCCommandInterface {
             String channelName = args[2];
             if (plugin.ircBots.containsKey(bot)) {
                 if (plugin.ircBots.get(bot).opsList.containsKey(channelName)) {
-                    plugin.sendMessage(sender, ChatColor.DARK_PURPLE + "-----[  " + ChatColor.WHITE + channelName
+                    plugin.sendMessageToSender(sender, ChatColor.DARK_PURPLE + "-----[  " + ChatColor.WHITE + channelName
                             + ChatColor.DARK_PURPLE + " - " + ChatColor.WHITE + "Auto Op Masks" + ChatColor.DARK_PURPLE + " ]-----");
                     for (String userMask : plugin.ircBots.get(bot).opsList.get(channelName)) {
-                        plugin.sendMessage(sender, " - " + userMask);
+                        plugin.sendMessageToSender(sender, " - " + userMask);
                     }
                 } else {
-                    plugin.sendMessage(sender, plugin.invalidChannel.replace("%CHANNEL%", channelName));
+                    plugin.sendMessageToSender(sender, plugin.invalidChannel.replace("%CHANNEL%", channelName));
                 }
             } else {
-                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessageToSender(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         } else {
-            plugin.sendMessage(sender, fullUsage);
+            plugin.sendMessageToSender(sender, fullUsage);
         }
     }
 

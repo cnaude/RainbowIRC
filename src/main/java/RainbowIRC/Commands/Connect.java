@@ -45,10 +45,10 @@ public class Connect implements IRCCommandInterface {
             if (plugin.ircBots.containsKey(bot)) {
                 plugin.ircBots.get(bot).asyncConnect(sender);
             } else {
-                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessageToSender(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         } else {
-            plugin.sendMessage(sender, fullUsage);
+            plugin.sendMessageToSender(sender, fullUsage);
         }
     }
 

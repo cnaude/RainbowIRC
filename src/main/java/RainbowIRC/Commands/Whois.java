@@ -48,10 +48,10 @@ public class Whois implements IRCCommandInterface {
                 RainbowBot ircBot = plugin.ircBots.get(bot);
                 ircBot.sendUserWhois(sender, nick);
             } else {
-                plugin.sendMessage(sender, plugin.invalidBotName.replace("%BOT%", bot));
+                plugin.sendMessageToSender(sender, plugin.invalidBotName.replace("%BOT%", bot));
             }
         } else {
-            plugin.sendMessage(sender, fullUsage);
+            plugin.sendMessageToSender(sender, fullUsage);
         }
     }
 

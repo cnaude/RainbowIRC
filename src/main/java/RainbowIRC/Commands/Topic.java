@@ -49,7 +49,7 @@ public class Topic implements IRCCommandInterface {
             bac = new BotsAndChannels(plugin, sender);
             for (String botName : bac.bot) {
                 for (String channelName : bac.channel) {
-                    plugin.sendMessage(sender, ChatColor.WHITE + "[" + ChatColor.DARK_PURPLE 
+                    plugin.sendMessageToSender(sender, ChatColor.WHITE + "[" + ChatColor.DARK_PURPLE 
                             + botName + ChatColor.WHITE 
                             + "/" + ChatColor.DARK_PURPLE + channelName 
                             + ChatColor.WHITE + "]"
@@ -57,7 +57,7 @@ public class Topic implements IRCCommandInterface {
                                     .channelTopic.get(channelName));
                 }
             }
-            plugin.sendMessage(sender, fullUsage);
+            plugin.sendMessageToSender(sender, fullUsage);
             return;
         }
         if (bac.bot.size() > 0 && bac.channel.size() > 0) {

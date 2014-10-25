@@ -52,19 +52,19 @@ public class Load implements IRCCommandInterface {
         if (args.length >= 2) {
             String bot = plugin.botify(args[1]);
             if (plugin.ircBots.containsKey(bot)) {
-                plugin.sendMessage(sender, ChatColor.RED + "Sorry that bot is already loaded. Try to unload it first.");
+                plugin.sendMessageToSender(sender, ChatColor.RED + "Sorry that bot is already loaded. Try to unload it first.");
                 return;
             }
             File file = new File(plugin.botsFolder, bot);
             if (file.exists()) {
-                plugin.sendMessage(sender, ChatColor.WHITE + "Loading " + bot + "...");
+                plugin.sendMessageToSender(sender, ChatColor.WHITE + "Loading " + bot + "...");
                 plugin.ircBots.put(file.getName(), new RainbowBot(file, plugin));
-                plugin.sendMessage(sender, "Loaded bot: " + file.getName() + "[" + plugin.ircBots.get(file.getName()).botNick + "]");
+                plugin.sendMessageToSender(sender, "Loaded bot: " + file.getName() + "[" + plugin.ircBots.get(file.getName()).botNick + "]");
             } else {
-                plugin.sendMessage(sender, ChatColor.RED + "No such bot file: " + ChatColor.WHITE + bot);
+                plugin.sendMessageToSender(sender, ChatColor.RED + "No such bot file: " + ChatColor.WHITE + bot);
             }
         } else {
-            plugin.sendMessage(sender, fullUsage);
+            plugin.sendMessageToSender(sender, fullUsage);
         }
     }
 

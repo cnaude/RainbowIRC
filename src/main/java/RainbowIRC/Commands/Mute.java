@@ -46,7 +46,7 @@ public class Mute implements IRCCommandInterface {
             bac = new BotsAndChannels(plugin, sender);
             idx = 1;
         } else {
-            plugin.sendMessage(sender, fullUsage);
+            plugin.sendMessageToSender(sender, fullUsage);
             return;
         }
         if (bac.bot.size() > 0 && bac.channel.size() > 0) {

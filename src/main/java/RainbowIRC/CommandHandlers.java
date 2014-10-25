@@ -139,13 +139,16 @@ public class CommandHandlers implements MC_Command {
     }
 
     @Override
-    public void handleCommand(MC_Player plr, String[] args) {        
+    public void handleCommand(MC_Player plr, String[] args) {
         plugin.logDebug("ARGS: " + Joiner.on(" ").join(args));
         if (args.length >= 1) {
             String subCmd = args[0].toLowerCase();
             if (commands.containsKey(subCmd)) {
-                if (!plr.hasPermission("irc." + subCmd)) {
-                    plr.sendMessage(plugin.noPermission);
+                if (plr != null) {
+                    if (!plr.hasPermission("irc." + subCmd)) {
+                        plr.sendMessage(plugin.noPermission);
+                        return;
+                    }
                 }
                 commands.get(subCmd).dispatch(plr, args);
                 return;
