@@ -38,8 +38,11 @@ import RainbowIRC.Configuration.Configuration;
 import RainbowIRC.Configuration.ConfigurationProvider;
 import RainbowIRC.Configuration.YamlConfiguration;
 import RainbowIRC.Utilities.IRCMessageHandler;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.InetAddress;
 import java.util.Calendar;
+import java.util.Properties;
 import java.util.UUID;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -119,6 +122,7 @@ public class MyPlugin extends PluginBase {
     private final Map<String, String> hostCache;
     private final Description pluginDescription;
     private final File pluginFolder;
+    private String maxPlayers;
 
     public MyPlugin() {
         this.pluginDescription = new Description();
@@ -142,6 +146,7 @@ public class MyPlugin extends PluginBase {
     @Override
     public void onStartup(MC_Server argServer) {
         server = argServer;
+        getMaxPlayers();
         LOG_HEADER_INFO = "[" + pluginDescription.getName() + "/INFO]";
         LOG_HEADER_ERROR = "[" + pluginDescription.getName() + "/ERROR]";
         LOG_HEADER_DEBUG = "[" + pluginDescription.getName() + "/DEBUG]";
@@ -461,7 +466,7 @@ public class MyPlugin extends PluginBase {
 
         String msg = listFormat
                 .replace("%COUNT%", Integer.toString(playerList.size()))
-                .replace("%MAX%", "00")
+                .replace("%MAX%", maxPlayers)
                 .replace("%PLAYERS%", pList);
         logDebug("L: " + msg);
         return colorConverter.gameColorsToIrc(msg);
@@ -813,6 +818,22 @@ public class MyPlugin extends PluginBase {
         } else {
             sender.sendMessage(message);
         }
+    }
+    
+    private void getMaxPlayers() {
+        File file = new File("server.properties");
+        try {
+            FileInputStream fileInput = new FileInputStream(file);
+            Properties prop = new Properties();
+            prop.load(fileInput);
+            maxPlayers = prop.getProperty("max-players", "20");
+        } catch (FileNotFoundException ex) {
+            logError(ex.getMessage());
+        } catch (IOException ex) {
+            logError(ex.getMessage());
+        }
+        
+
     }
 
 }
