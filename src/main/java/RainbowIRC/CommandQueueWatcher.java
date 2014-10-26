@@ -6,7 +6,7 @@ import java.util.TimerTask;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import joebkt.di;
+import joebkt.di_BaseException;
 import net.minecraft.server.MinecraftServer;
 
 /**
@@ -44,13 +44,14 @@ public class CommandQueueWatcher {
     private void queueAndSend() {
         IRCCommand ircCommand = queue.poll();
         if (ircCommand != null) {
-            //plugin.getServer().dispatchCommand(ircCommand.getIRCCommandSender(), ircCommand.getGameCommand());
-            //plugin.getServer().executeCommand(ircCommand.getGameCommand());
             try {
+                //plugin.getServer().dispatchCommand(ircCommand.getIRCCommandSender(), ircCommand.getGameCommand());
+                //plugin.getServer().executeCommand(ircCommand.getGameCommand());
                 MinecraftServer.getServer().getCommandSender().executeCommand(ircCommand.getIRCCommandSender(), ircCommand.getGameCommand());
-            } catch (di ex) {
+            } catch (di_BaseException ex) {
                 Logger.getLogger(CommandQueueWatcher.class.getName()).log(Level.SEVERE, null, ex);
             }
+           
         }
     }
 

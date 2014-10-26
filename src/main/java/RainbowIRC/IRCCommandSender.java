@@ -7,7 +7,7 @@ import joebkt.IntegerCoordinates;
 import joebkt.TextObject;
 import joebkt.Vec3D;
 import joebkt.World;
-import joebkt.di;
+import joebkt.di_BaseException;
 
 /**
  *
@@ -111,7 +111,7 @@ public class IRCCommandSender implements CommandSender {
     }
 
     @Override
-    public void a(CommandResultTypeMaybe crtm, int i) throws di {
+    public void a(CommandResultTypeMaybe crtm, int i) throws di_BaseException {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
